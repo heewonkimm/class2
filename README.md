@@ -1,8 +1,4 @@
-checklist 부분 고난도 퀴즈 풀기 체크 모두해제 부분
-
-
-
-
+section18 퀴즈 부분 클릭한 페이지 넘버 색상 바뀌는거 구현하기
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
