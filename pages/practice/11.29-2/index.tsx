@@ -27,9 +27,14 @@ export default function StaticRoutingMoved() {
   const [isActivePrev, setIsActivePrev] = useState(true);
   const [isActiveNext, setIsActiveNext] = useState(false);
   const lastPage = Math.ceil(dataBoardCount?.fetchBoardsCount ?? 10 / 10);
+  const [pageColor, setPageColor] = useState(new Array(10).fill('black'));
 
   const onClickPage = (e: MouseEvent<HTMLSpanElement>): void => {
-    void refetch({ page: Number(e.currentTarget.id) });
+    const currentTarget = Number(e.currentTarget.id);
+    void refetch({ page: currentTarget });
+
+    const activePageColor = pageColor.map((_, index) => (index + startPage === currentTarget ? 'red' : 'black'));
+    setPageColor(activePageColor);
   };
 
   const onClickPrev = (): void => {
@@ -73,7 +78,12 @@ export default function StaticRoutingMoved() {
         (_, index) =>
           index + startPage <= lastPage && (
             <Fragment>
-              <span key={index + startPage} id={String(index + startPage)} onClick={onClickPage} style={{ margin: '10px', padding: '7px', cursor: 'pointer' }}>
+              <span
+                key={index + startPage}
+                id={String(index + startPage)}
+                onClick={onClickPage}
+                style={{ margin: '10px', padding: '7px', cursor: 'pointer', color: pageColor[index] }}
+              >
                 {index + startPage}
               </span>
             </Fragment>
